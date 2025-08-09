@@ -7,7 +7,7 @@ export default defineConfig({
   // 网站描述
   description: "为网络安全领域的面试提供全面的知识储备和准备指南",
   // 部署站点的基础路径
-  base: '/',
+  base: '/NongMei_Sec',
   // 最后更新时间
   lastUpdated: true,
   // 多语言支持
