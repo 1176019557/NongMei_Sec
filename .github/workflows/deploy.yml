@@ -1,55 +1,46 @@
 name: Deploy VitePress site to Pages
 
 on:
-  # 每次推送到 main 分支时触发
   push:
     branches: [main]
-  
-  # 允许手动触发
   workflow_dispatch:
 
-# 设置权限
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# 并发控制
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # 构建任务
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0 # 获取完整 git 历史
+        uses: actions/checkout@v4  # 同时更新到 v4
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4  # 同时更新到 v4
         with:
           node-version: 18
-          cache: npm # 缓存 node_modules
+          cache: npm
 
       - name: Setup Pages
-        uses: actions/configure-pages@v3
+        uses: actions/configure-pages@v4  # 同时更新到 v4
 
       - name: Install dependencies
-        run: npm ci # 使用 package-lock.json 安装依赖
+        run: npm ci
 
       - name: Build with VitePress
         run: npm run docs:build
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v4  # ✅ 关键修改：v3 → v4
         with:
           path: docs/.vitepress/dist
 
-  # 部署任务
   deploy:
     environment:
       name: github-pages
@@ -59,4 +50,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v2
+        uses: actions/deploy-pages@v4  # 同时更新到 v4
