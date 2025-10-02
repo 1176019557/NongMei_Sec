@@ -56,7 +56,8 @@ export default defineConfig({
           text: '网安面经',
           collapsed: false,
           items: [
-            { text: '面试准备概述', link: '/security-interview/' }
+            { text: '面试准备概述', link: '/security-interview/' },
+            { text: '网络安全知识点汇总', link: '/security-interview/2025-10-01-mianshitimu' }
           ]
         }
       ],
